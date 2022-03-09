@@ -11,6 +11,8 @@ const String kDBConfigured = 'db_configured';
 const int kDBVersion = 1;
 
 void main() {
+  // Init ffi loader if needed.
+  sqfliteFfiInit();
   runApp(const MyApp());
 }
 
