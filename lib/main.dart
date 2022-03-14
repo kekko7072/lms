@@ -4,6 +4,7 @@ import 'package:sqflite_common/sqlite_api.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'models/link.dart';
 
 const String kDBPath = 'db';
 const String kDBConfigured = 'db_configured';
@@ -11,7 +12,6 @@ const String kDBConfigured = 'db_configured';
 const int kDBVersion = 1;
 
 void main() {
-  // Init ffi loader if needed.
   sqfliteFfiInit();
   runApp(const MyApp());
 }
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Database? db;
 
-  List<Map<String, Object?>>? links;
+  List<Link>? links;
 
   Future<bool> dbConfigured() async {
     prefs = await SharedPreferences.getInstance();
@@ -79,9 +79,15 @@ class _MyHomePageState extends State<MyHomePage> {
   )
   ''');
     }
-    links = await db?.query('Links') ?? [];
     if (kDebugMode) {
-      print(links);
+      print('QUERY FROM DATABASE');
+      print(await db?.query('Links'));
+      print('\n\n');
+    }
+    links = Link.fromJson(body: await db?.query('Links'));
+
+    if (kDebugMode) {
+      print('first read DB');
     }
     setState(() {});
   }
@@ -113,9 +119,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> readDB() async {
-    links = await db?.query('Links') ?? [];
+    links = Link.fromJson(body: await db?.query('Links'));
     if (kDebugMode) {
-      print(links);
+      print('read DB');
     }
     setState(() {});
   }
@@ -142,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if (links != null) ...{
+            if (links != null && links!.isNotEmpty) ...{
               Wrap(
                 children: [
                   for (var link in links!) ...[
@@ -155,15 +161,15 @@ class _MyHomePageState extends State<MyHomePage> {
                             alignment: Alignment.center,
                             children: [
                               Text(
-                                '${link['title']}',
+                                link.title,
                                 style: Theme.of(context).textTheme.titleLarge,
                               ),
                               Align(
                                   alignment: Alignment.topRight,
                                   child: IconButton(
-                                    onPressed: () async => await deleteLink(
-                                            id: link['id'].toString())
-                                        .then((value) => readDB()),
+                                    onPressed: () async =>
+                                        await deleteLink(id: link.id.toString())
+                                            .then((value) => readDB()),
                                     icon: const Icon(
                                       Icons.close,
                                       color: Colors.red,
@@ -172,16 +178,14 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           Text(
-                            '${link['description']}',
+                            link.description,
                             style: Theme.of(context).textTheme.subtitle1,
                           ),
                           TextButton(
                             child: const Text('Apri link'),
                             onPressed: () async {
-                              if (link['url'] != null) {
-                                if (!await launch(link['url'].toString())) {
-                                  throw 'Could not launch ${link['url'].toString()}';
-                                }
+                              if (!await launch(link.url.toString())) {
+                                throw 'Could not launch ${link.url.toString()}';
                               }
                             },
                           ),
@@ -261,7 +265,7 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           },
         ),
-        tooltip: 'Increment',
+        tooltip: 'Aggiungi link',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
