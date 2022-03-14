@@ -28,9 +28,9 @@ class Link {
           print(value);
           print('\n');
         }
-        //4. Aggiungo i link alla lista
+        //4. Aggiungo il singolo link alla lista
         list.add(Link(
-          //Di ogni elemento faccio il cast e metto anche un valore se value['key'] mi ritorna nullo
+          //Di ogni elemento faccio il cast e metto anche un valore di default se value['key'] mi ritorna nullo
           id: value['id'] ?? 0,
           title: value['title'] ?? '',
           description: value['description'] ?? '',
