@@ -1,3 +1,5 @@
+import 'package:about/about.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite_common/sqlite_api.dart';
@@ -5,6 +7,7 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'models/link.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 const String kDBPath = 'db';
 const String kDBConfigured = 'db_configured';
@@ -12,7 +15,10 @@ const String kDBConfigured = 'db_configured';
 const int kDBVersion = 1;
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   sqfliteFfiInit();
+
   runApp(const MyApp());
 }
 
@@ -23,8 +29,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
       ),
       home: const MyHomePage(),
     );
@@ -142,6 +149,40 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () async {
+              PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
+              showAboutPage(
+                context: context,
+                values: {
+                  'version': packageInfo.version,
+                  'year': DateTime.now().year.toString(),
+                },
+                applicationLegalese:
+                    'Copyright © Riccardo Rettore | Simone Porcari | Francesco Vezzani, {{ year }}',
+                applicationDescription: const Text(
+                    'Applicazione per la gestione dei link delle videochiamate.'),
+                children: const <Widget>[
+                  MarkdownPageListTile(
+                    icon: Icon(Icons.list),
+                    title: Text('Changelog'),
+                    filename: 'CHANGELOG.md',
+                  ),
+                  LicensesPageListTile(
+                    icon: Icon(Icons.favorite),
+                  ),
+                ],
+                applicationIcon: const SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: Image(
+                    image: AssetImage('assets/icon.png'),
+                  ),
+                ),
+              );
+            },
+            icon: const Icon(CupertinoIcons.infinite)),
         title: const Text('Link Management System'),
       ),
       body: Center(
