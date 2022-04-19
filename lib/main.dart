@@ -2,20 +2,27 @@ import 'package:about/about.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:launch_at_startup/launch_at_startup.dart';
 import 'package:sqflite_common/sqlite_api.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'models/link.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'dart:io';
 
 const String kDBPath = 'db';
 const String kDBConfigured = 'db_configured';
 
 const int kDBVersion = 1;
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  PackageInfo packageInfo = await PackageInfo.fromPlatform();
+  LaunchAtStartup.instance.setup(
+    appName: packageInfo.appName,
+    appPath: Platform.resolvedExecutable,
+  );
 
   sqfliteFfiInit();
 
@@ -46,6 +53,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool _isEnabled = false;
   SharedPreferences? prefs;
 
   Database? db;
@@ -133,9 +141,25 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
   }
 
+  _init() async {
+    _isEnabled = await launchAtStartup.isEnabled();
+    setState(() {});
+  }
+
+  _handleEnable() async {
+    await launchAtStartup.enable();
+    await _init();
+  }
+
+  _handleDisable() async {
+    await launchAtStartup.disable();
+    await _init();
+  }
+
   @override
   void initState() {
     super.initState();
+    _init();
     openDB();
   }
 
@@ -160,17 +184,24 @@ class _MyHomePageState extends State<MyHomePage> {
                   'year': DateTime.now().year.toString(),
                 },
                 applicationLegalese:
-                    'Copyright © Riccardo Rettore | Simone Porcari | Francesco Vezzani, {{ year }}',
+                    'Copyright © Simone Porcari | Riccardo Rettore | Francesco Vezzani, {{ year }}',
                 applicationDescription: const Text(
                     'Applicazione per la gestione dei link delle videochiamate.'),
-                children: const <Widget>[
-                  MarkdownPageListTile(
+                children: <Widget>[
+                  const MarkdownPageListTile(
                     icon: Icon(Icons.list),
                     title: Text('Changelog'),
                     filename: 'CHANGELOG.md',
                   ),
-                  LicensesPageListTile(
+                  const LicensesPageListTile(
                     icon: Icon(Icons.favorite),
+                  ),
+                  ListTile(
+                    leading: Icon(_isEnabled
+                        ? CupertinoIcons.check_mark_circled
+                        : CupertinoIcons.xmark_circle),
+                    title: const Text('Apertura al login'),
+                    onTap: _isEnabled ? _handleDisable : _handleEnable,
                   ),
                 ],
                 applicationIcon: const SizedBox(

@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  auto_updater
   url_launcher_windows
 )
 
