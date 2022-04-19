@@ -11,7 +11,7 @@ import 'models/link.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'dart:io';
 
-const String kDBPath = 'db';
+const String kDBPath = 'database_app';
 const String kDBConfigured = 'db_configured';
 
 const int kDBVersion = 1;
@@ -148,16 +148,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _handleEnable() async {
     await launchAtStartup.enable();
-    setState(() {
-      _isEnabled = !_isEnabled;
-    });
+    await _init();
   }
 
   _handleDisable() async {
     await launchAtStartup.disable();
-    setState(() {
-      _isEnabled = !_isEnabled;
-    });
+    await _init();
   }
 
   void _showMaterialDialog() async {
@@ -170,14 +166,14 @@ class _MyHomePageState extends State<MyHomePage> {
               content: const Text('Vuoi che LMS si apra al login?'),
               actions: <Widget>[
                 TextButton(
-                    onPressed: () {
-                      _handleDisable();
+                    onPressed: () async {
+                      await _handleDisable();
                       Navigator.of(context).pop();
                     },
                     child: const Text('No')),
                 TextButton(
-                  onPressed: () {
-                    _handleEnable();
+                  onPressed: () async {
+                    await _handleEnable();
                     Navigator.of(context).pop();
                   },
                   child: const Text('Si'),
