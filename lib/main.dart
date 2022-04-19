@@ -188,7 +188,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _init();
-    _showMaterialDialog();
     openDB();
   }
 
@@ -200,6 +199,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    _showMaterialDialog();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
