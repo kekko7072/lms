@@ -148,18 +148,51 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _handleEnable() async {
     await launchAtStartup.enable();
-    await _init();
+    setState(() {
+      _isEnabled = !_isEnabled;
+    });
   }
 
   _handleDisable() async {
     await launchAtStartup.disable();
-    await _init();
+    setState(() {
+      _isEnabled = !_isEnabled;
+    });
+  }
+
+  void _showMaterialDialog() async {
+    if (!_isEnabled && !await dbConfigured()) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Apertura al login'),
+              content: const Text('Vuoi che LMS si apra al login?'),
+              actions: <Widget>[
+                TextButton(
+                    onPressed: () {
+                      _handleDisable();
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('No')),
+                TextButton(
+                  onPressed: () {
+                    _handleEnable();
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Si'),
+                )
+              ],
+            );
+          });
+    }
   }
 
   @override
   void initState() {
     super.initState();
     _init();
+    _showMaterialDialog();
     openDB();
   }
 
@@ -196,12 +229,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   const LicensesPageListTile(
                     icon: Icon(Icons.favorite),
                   ),
-                  ListTile(
-                    leading: Icon(_isEnabled
-                        ? CupertinoIcons.check_mark_circled
-                        : CupertinoIcons.xmark_circle),
-                    title: const Text('Apertura al login'),
-                    onTap: _isEnabled ? _handleDisable : _handleEnable,
+                  StatefulBuilder(
+                    builder: (context, setState) => ListTile(
+                        leading: Icon(_isEnabled
+                            ? CupertinoIcons.check_mark_circled
+                            : CupertinoIcons.xmark_circle),
+                        title: const Text('Apertura al login'),
+                        onTap: () async {
+                          if (_isEnabled) {
+                            await launchAtStartup.disable();
+                          } else {
+                            await launchAtStartup.enable();
+                          }
+                          setState(() => _isEnabled = !_isEnabled);
+                        }),
                   ),
                 ],
                 applicationIcon: const SizedBox(
