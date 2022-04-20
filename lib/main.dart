@@ -1,18 +1,7 @@
+import 'package:lms/services/imports.dart';
 import 'package:about/about.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:launch_at_startup/launch_at_startup.dart';
-import 'package:sqflite_common/sqlite_api.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'models/link.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'dart:io';
-
-const String kDBPath = 'database_app';
-const String kDBConfigured = 'db_configured';
+import 'package:lms/models/link.dart';
 
 const int kDBVersion = 1;
 
