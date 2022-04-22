@@ -27,6 +27,14 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^1.0.4
+  msix: ^3.5.1
+
+msix_config:
+  display_name: LMS
+  publisher_display_name: Francesco Vezzani
+  identity_name: francesco.vezzani.lms
+  msix_version: 0.0.1.2
+  logo_path: ./asseets/icon.png
 
 flutter:
 
