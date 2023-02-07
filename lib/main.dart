@@ -1,7 +1,9 @@
+import 'package:lms/services/database_local.dart';
 import 'package:lms/services/imports.dart';
 import 'package:about/about.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:lms/models/link.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 const int kDBVersion = 1;
 
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
       ),
       home: const MyHomePage(),
+      builder: EasyLoading.init(),
     );
   }
 }
@@ -52,6 +55,215 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<bool> dbConfigured() async {
     prefs = await SharedPreferences.getInstance();
     return prefs!.getBool(kDBConfigured) ?? false;
+  }
+
+  Future<void> deleteLink({required String id}) async {
+    await db?.delete('Links', where: 'id = ?', whereArgs: [id]);
+    setState(() {});
+  }
+
+  Future<void> readDB() async {
+    links = Link.fromJson(body: await db?.query('Links'));
+    if (kDebugMode) {
+      print('read DB');
+    }
+    setState(() {});
+  }
+
+  _init() async {
+    _isEnabled = await launchAtStartup.isEnabled();
+    setState(() {});
+  }
+
+  _handleEnable() async {
+    await launchAtStartup.enable();
+    await _init();
+  }
+
+  _handleDisable() async {
+    await launchAtStartup.disable();
+    await _init();
+  }
+
+  void _showMaterialDialog() async {
+    await dbConfigured().then((value) {
+      if (!_isEnabled && !value) {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text('Open at login'),
+                content: const Text('Do you want LMS open at login?'),
+                actions: <Widget>[
+                  TextButton(
+                      onPressed: () async {
+                        await _handleDisable();
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('No')),
+                  TextButton(
+                    onPressed: () async {
+                      await _handleEnable();
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Si'),
+                  )
+                ],
+              );
+            });
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _init();
+    openDB();
+  }
+
+  @override
+  void dispose() {
+    DatabaseLocal(db).closeDB();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _showMaterialDialog();
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () => showAboutApp(),
+            icon: const Icon(CupertinoIcons.infinite)),
+        title: GestureDetector(
+          child: const Text('Link Management System'),
+          onTap: () => showAboutApp(),
+        ),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            if (links != null && links!.isNotEmpty) ...{
+              Wrap(
+                children: [
+                  for (var link in links!) ...[
+                    SizedBox(
+                      width: 300,
+                      child: Card(
+                          child: Column(
+                        children: [
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Text(
+                                link.title,
+                                style: Theme.of(context).textTheme.titleLarge,
+                              ),
+                              Align(
+                                  alignment: Alignment.topRight,
+                                  child: IconButton(
+                                    onPressed: () async =>
+                                        await deleteLink(id: link.id.toString())
+                                            .then((value) => readDB()),
+                                    icon: const Icon(
+                                      Icons.close,
+                                      color: Colors.red,
+                                    ),
+                                  )),
+                            ],
+                          ),
+                          Text(
+                            link.description,
+                            style: Theme.of(context).textTheme.subtitle1,
+                          ),
+                          TextButton(
+                            child: const Text('Open link'),
+                            onPressed: () async {
+                              if (!await launchUrlString(link.url.toString())) {
+                                throw 'Could not launch ${link.url.toString()}';
+                              }
+                            },
+                          ),
+                        ],
+                      )),
+                    ),
+                  ]
+                ],
+              )
+            }
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async => showDialog(
+          context: context,
+          barrierDismissible: false, // user must tap button!
+          builder: (BuildContext context) {
+            String title = '';
+            String description = '';
+            String url = '';
+
+            return AlertDialog(
+              title: const Text('Insert link'),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    TextField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Title (es. Monday meeting)',
+                      ),
+                      onChanged: (value) => title = value,
+                    ),
+                    const SizedBox(height: 10),
+                    TextField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Description (es. Every friday)',
+                      ),
+                      onChanged: (value) => description = value,
+                    ),
+                    const SizedBox(height: 10),
+                    TextField(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Link (ex. site or meeting)',
+                      ),
+                      onChanged: (value) => url = value,
+                    ),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  child: Text(
+                    'Cancel',
+                    style: Theme.of(context)
+                        .textTheme
+                        .button!
+                        .copyWith(color: Colors.red),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                TextButton(
+                  child: const Text('Save'),
+                  onPressed: () async => await DatabaseLocal(db)
+                      .addLink(title: title, description: description, url: url)
+                      .then((value) => readDB())
+                      .whenComplete(() => Navigator.of(context).pop()),
+                ),
+              ],
+            );
+          },
+        ),
+        tooltip: 'Add link',
+        child: const Icon(Icons.add),
+      ),
+    );
   }
 
   Future<void> openDB() async {
@@ -95,276 +307,50 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
   }
 
-  Future<void> closeDB() async {
-    if (db != null && db!.isOpen) {
-      await db!.close();
-    }
-  }
-
-  Future<bool> addLink(
-      {required String title,
-      required String description,
-      required String url}) async {
-    await db?.insert('Links', <String, Object?>{
-      'title': title,
-      'description': description,
-      'url': url
-    });
-    if (await db?.query('Links', where: 'url = ?', whereArgs: [url]) != null) {
-      return true;
-    }
-    return false;
-  }
-
-  Future<void> deleteLink({required String id}) async {
-    await db?.delete('Links', where: 'id = ?', whereArgs: [id]);
-    setState(() {});
-  }
-
-  Future<void> readDB() async {
-    links = Link.fromJson(body: await db?.query('Links'));
-    if (kDebugMode) {
-      print('read DB');
-    }
-    setState(() {});
-  }
-
-  _init() async {
-    _isEnabled = await launchAtStartup.isEnabled();
-    setState(() {});
-  }
-
-  _handleEnable() async {
-    await launchAtStartup.enable();
-    await _init();
-  }
-
-  _handleDisable() async {
-    await launchAtStartup.disable();
-    await _init();
-  }
-
-  void _showMaterialDialog() async {
-    if (!_isEnabled && !await dbConfigured()) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: const Text('Apertura al login'),
-              content: const Text('Vuoi che LMS si apra al login?'),
-              actions: <Widget>[
-                TextButton(
-                    onPressed: () async {
-                      await _handleDisable();
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('No')),
-                TextButton(
-                  onPressed: () async {
-                    await _handleEnable();
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('Si'),
-                )
-              ],
-            );
-          });
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _init();
-    openDB();
-  }
-
-  @override
-  void dispose() {
-    closeDB();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _showMaterialDialog();
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            onPressed: () async {
-              PackageInfo packageInfo = await PackageInfo.fromPlatform();
-
-              showAboutPage(
-                context: context,
-                values: {
-                  'version': packageInfo.version,
-                  'year': DateTime.now().year.toString(),
-                },
-                applicationLegalese:
-                    'Copyright © Simone Porcari | Riccardo Rettore | Francesco Vezzani, {{ year }}',
-                applicationDescription:
-                    const Text('Applicazione per la gestione dei link.'),
-                children: <Widget>[
-                  const MarkdownPageListTile(
-                    icon: Icon(Icons.list),
-                    title: Text('Changelog'),
-                    filename: 'CHANGELOG.md',
-                  ),
-                  const LicensesPageListTile(
-                    icon: Icon(Icons.favorite),
-                  ),
-                  StatefulBuilder(
-                    builder: (context, setState) => ListTile(
-                        leading: Icon(_isEnabled
-                            ? CupertinoIcons.check_mark_circled
-                            : CupertinoIcons.xmark_circle),
-                        title: const Text('Apertura al login'),
-                        onTap: () async {
-                          if (_isEnabled) {
-                            await launchAtStartup.disable();
-                          } else {
-                            await launchAtStartup.enable();
-                          }
-                          setState(() => _isEnabled = !_isEnabled);
-                        }),
-                  ),
-                ],
-                applicationIcon: const SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Image(
-                    image: AssetImage('assets/icon.png'),
-                  ),
-                ),
-              );
+  Future<void> showAboutApp() async => await PackageInfo.fromPlatform()
+      .then((PackageInfo packageInfo) => showAboutPage(
+            context: context,
+            values: {
+              'version': packageInfo.version,
+              'year': DateTime.now().year.toString(),
             },
-            icon: const Icon(CupertinoIcons.infinite)),
-        title: const Text('Link Management System'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            if (links != null && links!.isNotEmpty) ...{
-              Wrap(
-                children: [
-                  for (var link in links!) ...[
-                    SizedBox(
-                      width: 300,
-                      child: Card(
-                          child: Column(
-                        children: [
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Text(
-                                link.title,
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              Align(
-                                  alignment: Alignment.topRight,
-                                  child: IconButton(
-                                    onPressed: () async =>
-                                        await deleteLink(id: link.id.toString())
-                                            .then((value) => readDB()),
-                                    icon: const Icon(
-                                      Icons.close,
-                                      color: Colors.red,
-                                    ),
-                                  )),
-                            ],
-                          ),
-                          Text(
-                            link.description,
-                            style: Theme.of(context).textTheme.subtitle1,
-                          ),
-                          TextButton(
-                            child: const Text('Apri link'),
-                            onPressed: () async {
-                              if (!await launch(link.url.toString())) {
-                                throw 'Could not launch ${link.url.toString()}';
-                              }
-                            },
-                          ),
-                        ],
-                      )),
-                    ),
-                  ]
-                ],
-              )
-            }
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async => showDialog(
-          context: context,
-          barrierDismissible: false, // user must tap button!
-          builder: (BuildContext context) {
-            String title = '';
-            String description = '';
-            String url = '';
-
-            return AlertDialog(
-              title: const Text('Inserisci link'),
-              content: SingleChildScrollView(
-                child: ListBody(
-                  children: <Widget>[
-                    TextField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Titolo',
-                      ),
-                      onChanged: (value) => title = value,
-                    ),
-                    const SizedBox(height: 10),
-                    TextField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Descrizione',
-                      ),
-                      onChanged: (value) => description = value,
-                    ),
-                    const SizedBox(height: 10),
-                    TextField(
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Link del sito o della videochiamata',
-                      ),
-                      onChanged: (value) => url = value,
-                    ),
-                  ],
-                ),
+            applicationLegalese:
+                'Copyright © Simone Porcari | Riccardo Rettore | Francesco Vezzani, {{ year }}',
+            applicationDescription:
+                const Text('Desktop application for links management.'),
+            children: <Widget>[
+              const MarkdownPageListTile(
+                icon: Icon(Icons.list),
+                title: Text('Changelog'),
+                filename: 'CHANGELOG.md',
               ),
-              actions: <Widget>[
-                TextButton(
-                  child: Text(
-                    'Annulla',
-                    style: Theme.of(context)
-                        .textTheme
-                        .button!
-                        .copyWith(color: Colors.red),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-                TextButton(
-                  child: const Text('Salva'),
-                  onPressed: () async {
-                    await addLink(
-                            title: title, description: description, url: url)
-                        .then((value) => readDB());
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            );
-          },
-        ),
-        tooltip: 'Aggiungi link',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
+              const LicensesPageListTile(
+                icon: Icon(Icons.favorite),
+              ),
+              StatefulBuilder(
+                builder: (context, setState) => ListTile(
+                    leading: Icon(_isEnabled
+                        ? CupertinoIcons.check_mark_circled
+                        : CupertinoIcons.xmark_circle),
+                    title: const Text('Launch at startup'),
+                    onTap: () async {
+                      if (_isEnabled) {
+                        EasyLoading.showInfo('Disabled launch at startup');
+                        await launchAtStartup.disable();
+                      } else {
+                        EasyLoading.showInfo('Enabled launch at startup');
+                        await launchAtStartup.enable();
+                      }
+                      setState(() => _isEnabled = !_isEnabled);
+                    }),
+              ),
+            ],
+            applicationIcon: const SizedBox(
+              width: 100,
+              height: 100,
+              child: Image(
+                image: AssetImage('assets/icon.png'),
+              ),
+            ),
+          ));
 }
