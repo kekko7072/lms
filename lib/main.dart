@@ -182,7 +182,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: const Text('Open link'),
                             onPressed: () async {
                               if (!await launchUrlString(link.url.toString())) {
-                                throw 'Could not launch ${link.url.toString()}';
+                                debugPrint(
+                                    'Could not launch ${link.url.toString()}');
                               }
                             },
                           ),
@@ -316,8 +317,8 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             applicationLegalese:
                 'Copyright © Simone Porcari | Riccardo Rettore | Francesco Vezzani, {{ year }}',
-            applicationDescription:
-                const Text('Desktop application for links management.'),
+            applicationDescription: const Text(
+                'Make managing your links quick and easy!\n\nThe Link Management System app makes it easy to store and manage all of your important links.\nManage your entire link library with the app’s intuitive organisation system, which allows you to quickly find and open links by description or title.'),
             children: <Widget>[
               const MarkdownPageListTile(
                 icon: Icon(Icons.list),
