@@ -33,8 +33,8 @@ dev_dependencies:
 msix_config:
   display_name: LMS
   publisher_display_name: Francesco Vezzani
-  publisher: CN=522E4865-600A-44EE-A635-B31EE4E25742
-  identity_name: 37177FrancescoVezzani.LMS-LinkManagementSystem
+  publisher:
+  identity_name:
   msix_version: 1.0.3.4
   logo_path: ./assets/icon.png
   languages: en-us
