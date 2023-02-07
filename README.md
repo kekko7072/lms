@@ -15,7 +15,7 @@ This app was initially developed as an exercise, but quickly became a useful and
 ## Release
 Follow specific platform release pipeline and then create a release in GitHub where put the files.
 ### macOS
-Archive the app in Xcode, then distribute Ad hoc > DeveloperID > Download notorized app
+Archive the app in Xcode, Windows >Distribute App > Developer ID > Export Notarized App
 ### Windows
 Follow this [video](https://www.youtube.com/watch?v=XvwX-hmYv0E) to build the .exe file. As said in [package instructions](https://pub.dev/packages/sqflite_common_ffi#windows) remember that in <b>release mode</b> you need to add the file sqlite3.dll [downlaod](https://github.com/tekartik/sqflite/raw/master/sqflite_common_ffi/lib/src/windows/sqlite3.dll) in same folder as your executable. 
 Sign the app using [thi guide](https://learn.microsoft.com/it-it/windows/uwp/debug-test-perf/windows-app-certification-kit#validate-your-windows-app-using-the-windows-app-certification-kit-interactively): 
