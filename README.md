@@ -1,6 +1,12 @@
 # Link Management System
 
-Link Management System
+Link Management System for desktop is an app that enable you to have easy access to all the link you need for your study or work. It's FREE and OPEN SOURCE, so fell free to help us improving!
+
+## Download
+### New release v. 0.0.2
+[macOS](https://www.youtube.com/watch?v=XvwX-hmYv0E)
+[Windows](https://www.youtube.com/watch?v=XvwX-hmYv0E)
+
 
 
 ## Build

@@ -67,7 +67,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (await dbConfigured() && await db?.getVersion() == kDBVersion) {
       //    if (db.getVersion()) expect(await db.getVersion(), 0);
-
     } else {
       sqfliteFfiInit();
       await prefs?.setBool('db_configured', true);
@@ -203,8 +202,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 applicationLegalese:
                     'Copyright © Simone Porcari | Riccardo Rettore | Francesco Vezzani, {{ year }}',
-                applicationDescription: const Text(
-                    'Applicazione per la gestione dei link delle videochiamate.'),
+                applicationDescription:
+                    const Text('Applicazione per la gestione dei link.'),
                 children: <Widget>[
                   const MarkdownPageListTile(
                     icon: Icon(Icons.list),
@@ -330,7 +329,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     TextField(
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Link della videochiamata',
+                        labelText: 'Link del sito o della videochiamata',
                       ),
                       onChanged: (value) => url = value,
                     ),
