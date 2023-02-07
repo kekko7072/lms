@@ -1,5 +1,6 @@
 # Link Management System
 _Make managing your links quick and easy!_
+
 The Link Management System app **makes it **easy**** to **store** and **manage** all of your important **links**. Manage your entire link library with the app’s intuitive organisation system, which allows you to quickly find and open links by description or title.
 You can also easily **add new links** to the system, categorize them, and edit their details with just a few clicks.
 
