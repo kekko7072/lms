@@ -20,7 +20,7 @@ dependencies:
   package_info_plus: ^3.0.2
   adaptive_dialog: ^1.8.2
   launch_at_startup: ^0.2.1
-  auto_updater: ^0.1.6
+  #auto_updater: ^0.1.6 NEED ADDITIONAL REQUIREMENT
   flutter_easyloading: ^3.0.5
 
 dev_dependencies:
