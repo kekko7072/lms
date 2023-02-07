@@ -10,10 +10,10 @@ const int kDBVersion = 1;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  LaunchAtStartup.instance.setup(
+  /*LaunchAtStartup.instance.setup(
     appName: packageInfo.appName,
     appPath: Platform.resolvedExecutable,
-  );
+  );*/
 
   sqfliteFfiInit();
 
@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
   }
 
-  _init() async {
+  /*_init() async {
     _isEnabled = await launchAtStartup.isEnabled();
     setState(() {});
   }
@@ -83,9 +83,9 @@ class _MyHomePageState extends State<MyHomePage> {
   _handleDisable() async {
     await launchAtStartup.disable();
     await _init();
-  }
+  }*/
 
-  void _showMaterialDialog() async {
+  /* void _showMaterialDialog() async {
     await dbConfigured().then((value) {
       if (!_isEnabled && !value) {
         showDialog(
@@ -114,11 +114,11 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     });
   }
-
+*/
   @override
   void initState() {
     super.initState();
-    _init();
+    //_init();
     openDB();
   }
 
@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    _showMaterialDialog();
+    //_showMaterialDialog();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -324,10 +324,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: Text('Changelog'),
                 filename: 'CHANGELOG.md',
               ),
+              const MarkdownPageListTile(
+                icon: Icon(Icons.logo_dev),
+                title: Text('Contributing'),
+                filename: 'CONTRIBUTING.md',
+              ),
               const LicensesPageListTile(
                 icon: Icon(Icons.favorite),
               ),
-              StatefulBuilder(
+              /* StatefulBuilder(
                 builder: (context, setState) => ListTile(
                     leading: Icon(_isEnabled
                         ? CupertinoIcons.check_mark_circled
@@ -344,6 +349,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       setState(() => _isEnabled = !_isEnabled);
                     }),
               ),
+            */
             ],
             applicationIcon: const SizedBox(
               width: 100,
