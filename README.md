@@ -5,7 +5,7 @@ The Link Management System app **makes it **easy**** to **store** and **manage**
 You can also easily **add new links** to the system, categorize them, and edit their details with just a few clicks.
 
 ## Download
-### New release v. 0.0.2 [DOWNLOAD](https://github.com/kekko7072/lms/releases/tag/0.0.2).
+### New release v. 0.0.2 [DOWNLOAD](https://github.com/kekko7072/lms/releases/tag/0.0.2)
 This has new improvements and it's finally available on the [release note](https://github.com/kekko7072/lms/releases/tag/0.0.2) page.
 
 ## Credits
