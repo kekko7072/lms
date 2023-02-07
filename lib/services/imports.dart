@@ -1,7 +1,7 @@
 export 'dart:io';
 export 'package:flutter/foundation.dart';
 
-export 'package:launch_at_startup/launch_at_startup.dart';
+//export 'package:launch_at_startup/launch_at_startup.dart';
 export 'package:sqflite_common/sqlite_api.dart';
 export 'package:sqflite_common_ffi/sqflite_ffi.dart';
 export 'package:shared_preferences/shared_preferences.dart';

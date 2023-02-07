@@ -10,10 +10,10 @@ const int kDBVersion = 1;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   PackageInfo packageInfo = await PackageInfo.fromPlatform();
-  LaunchAtStartup.instance.setup(
+  /*LaunchAtStartup.instance.setup(
     appName: packageInfo.appName,
     appPath: Platform.resolvedExecutable,
-  );
+  );*/
 
   sqfliteFfiInit();
 
@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
   }
 
-  _init() async {
+  /*_init() async {
     _isEnabled = await launchAtStartup.isEnabled();
     setState(() {});
   }
@@ -83,9 +83,9 @@ class _MyHomePageState extends State<MyHomePage> {
   _handleDisable() async {
     await launchAtStartup.disable();
     await _init();
-  }
+  }*/
 
-  void _showMaterialDialog() async {
+  /* void _showMaterialDialog() async {
     await dbConfigured().then((value) {
       if (!_isEnabled && !value) {
         showDialog(
@@ -114,11 +114,11 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     });
   }
-
+*/
   @override
   void initState() {
     super.initState();
-    _init();
+    //_init();
     openDB();
   }
 
@@ -130,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    _showMaterialDialog();
+    //_showMaterialDialog();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -182,7 +182,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: const Text('Open link'),
                             onPressed: () async {
                               if (!await launchUrlString(link.url.toString())) {
-                                throw 'Could not launch ${link.url.toString()}';
+                                debugPrint(
+                                    'Could not launch ${link.url.toString()}');
                               }
                             },
                           ),
@@ -316,18 +317,23 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             applicationLegalese:
                 'Copyright © Simone Porcari | Riccardo Rettore | Francesco Vezzani, {{ year }}',
-            applicationDescription:
-                const Text('Desktop application for links management.'),
+            applicationDescription: const Text(
+                'Make managing your links quick and easy!\n\nThe Link Management System app makes it easy to store and manage all of your important links.\nManage your entire link library with the app’s intuitive organisation system, which allows you to quickly find and open links by description or title.'),
             children: <Widget>[
               const MarkdownPageListTile(
                 icon: Icon(Icons.list),
                 title: Text('Changelog'),
                 filename: 'CHANGELOG.md',
               ),
+              const MarkdownPageListTile(
+                icon: Icon(Icons.logo_dev),
+                title: Text('Contributing'),
+                filename: 'CONTRIBUTING.md',
+              ),
               const LicensesPageListTile(
                 icon: Icon(Icons.favorite),
               ),
-              StatefulBuilder(
+              /* StatefulBuilder(
                 builder: (context, setState) => ListTile(
                     leading: Icon(_isEnabled
                         ? CupertinoIcons.check_mark_circled
@@ -344,6 +350,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       setState(() => _isEnabled = !_isEnabled);
                     }),
               ),
+            */
             ],
             applicationIcon: const SizedBox(
               width: 100,
