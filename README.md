@@ -12,14 +12,15 @@ This has new improvements and it's finally available on the [release note](https
 This app was initially developed as an exercise, but quickly became a useful and practical tool for managing everyday links. 
 ### Simone Procari, Riccardo Rettore and Francesco Vezzani
 
-
+## Release
+Follow build pipeline and then create a release in GitHub.
 
 ## Build
 ### macOS
 Run on Debug or Release Mode.
 
 ### Windows
-Follow this [video](https://www.youtube.com/watch?v=XvwX-hmYv0E) to build the .exe file. As said in [package instructions](https://pub.dev/packages/sqflite_common_ffi#windows) remember that in <b>release mode</b> you need to add the file sqlite3.dll [downlaod](https://github.com/tekartik/sqflite/raw/master/sqflite_common_ffi/lib/src/windows/sqlite3.dll) in same folder as your executable.
+Follow this [video](https://www.youtube.com/watch?v=XvwX-hmYv0E) to build the .exe file. As said in [package instructions](https://pub.dev/packages/sqflite_common_ffi#windows) remember that in <b>release mode</b> you need to add the file sqlite3.dll [downlaod](https://github.com/tekartik/sqflite/raw/master/sqflite_common_ffi/lib/src/windows/sqlite3.dll) in same folder as your executable. Then sign the executable with 'signtool sign /a /fd SHA256 /tr http://timestamp.digicert.com /td SHA256 MyFile.exe'.
 
 ### Linux
 Never tested.
