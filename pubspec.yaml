@@ -33,9 +33,19 @@ dev_dependencies:
 msix_config:
   display_name: LMS
   publisher_display_name: Francesco Vezzani
-  identity_name: francesco.vezzani.lms
-  msix_version: 0.0.2.3
-  logo_path: ./asseets/icon.png
+  publisher: CN=522E4865-600A-44EE-A635-B31EE4E25742
+  identity_name: 37177FrancescoVezzani.LMS-LinkManagementSystem
+  msix_version: 1.0.3.4
+  logo_path: ./assets/icon.png
+  languages: en-us
+  capabilities: "internetClient"
+  app_installer:
+    publish_folder_path: C:\Users\franc\Desktop\lms\installers
+    hours_between_update_checks: 0
+    automatic_background_task: true
+    update_blocks_activation: true
+    show_prompt: true
+    force_update_from_any_version: true
 
 flutter:
 
