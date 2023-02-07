@@ -35,7 +35,7 @@ msix_config:
   publisher_display_name: Francesco Vezzani
   identity_name: francesco.vezzani.lms
   msix_version: 0.0.2.3
-  logo_path: ./asseets/icon.png
+  logo_path: ./assets/icon.png
 
 flutter:
 
