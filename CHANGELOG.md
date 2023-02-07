@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-[0.0.2]: https://github.com/olivierlacan/keep-a-changelog/releases/tag/v0.0.1
+[0.0.2]: https://github.com/kekko7072/lms/releases/tag/0.0.2
 
 ## [0.0.2] - 2023-02-07
 ### Fixed issue
@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Release file for windows on README.md
 
-[0.0.1]: https://github.com/olivierlacan/keep-a-changelog/releases/tag/v0.0.1
+[0.0.1]: https://github.com/kekko7072/lms/releases/tag/0.0.1
 
 ## [0.0.1] - 2022-04-17
 ### Added

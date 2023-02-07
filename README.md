@@ -4,8 +4,7 @@ Link Management System for desktop is an app that enable you to have easy access
 
 ## Download
 ### New release v. 0.0.2
-[macOS](https://www.youtube.com/watch?v=XvwX-hmYv0E)
-[Windows](https://www.youtube.com/watch?v=XvwX-hmYv0E)
+This has new improvements and it's finally available on the [release note](https://github.com/kekko7072/lms/releases/tag/0.0.2).
 
 
 
