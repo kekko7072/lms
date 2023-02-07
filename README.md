@@ -1,10 +1,15 @@
 # Link Management System
-
-Link Management System for desktop is an app that enable you to have easy access to all the link you need for your study or work. It's FREE and OPEN SOURCE, so fell free to help us improving!
+_Make managing your links quick and easy!_
+The Link Management System app **makes it **easy**** to **store** and **manage** all of your important **links**. Manage your entire link library with the app’s intuitive organisation system, which allows you to quickly find and open links by description or title.
+You can also easily **add new links** to the system, categorize them, and edit their details with just a few clicks.
 
 ## Download
-### New release v. 0.0.2
-This has new improvements and it's finally available on the [release note](https://github.com/kekko7072/lms/releases/tag/0.0.2).
+### New release v. 0.0.2 [DOWNLOAD](https://github.com/kekko7072/lms/releases/tag/0.0.2).
+This has new improvements and it's finally available on the [release note](https://github.com/kekko7072/lms/releases/tag/0.0.2) page.
+
+## Credits
+This app was initially developed as an exercise, but quickly became a useful and practical tool for managing everyday links. 
+### Simone Procari, Riccardo Rettore and Francesco Vezzani
 
 
 
