@@ -62,12 +62,7 @@ class DatabaseLocal {
 
   Future<Map<String, dynamic>> addLink(LMSContent lmsContent) async {
     try {
-      await db?.insert(kDBTable, <String, Object?>{
-        'title': lmsContent.title,
-        'description': lmsContent.description,
-        'content': lmsContent.content,
-        'type': '${lmsContent.linkType}'
-      });
+      await db?.insert(kDBTable, LMSContent.toJson(lmsContent));
     } catch (e) {
       debugPrint("ERROR CREATING: $e");
       return {"success": false, "message": "$e"};
@@ -87,7 +82,7 @@ class DatabaseLocal {
   }
 
   Future<List<LMSContent>> readDB() async {
-    debugPrint('Read table $kDBTable');
+    debugPrint('Reading table $kDBTable');
     var body = await db?.query(kDBTable);
     debugPrint("BODY: $body");
     return LMSContent.listFromJson(body: body);

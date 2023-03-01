@@ -17,7 +17,7 @@ class _AddWidgetState extends State<AddWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Insert content'),
+      title: Text('Insert ${linkType == LinkType.code ? "code" : "link"}'),
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
