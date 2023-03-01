@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "LMS"
-#define MyAppVersion "0.0.2"
+#define MyAppVersion "0.0.3"
 #define MyAppPublisher "Francesco Vezzani"
 #define MyAppExeName "lms.exe"
 #define MyAppAssocName MyAppName + " Link"
