@@ -12,41 +12,27 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.5
+  # Basic
+  url_launcher: ^6.1.10
+  sqflite_common: ^2.4.2+2
   sqflite_common_ffi: ^2.2.1+1
   shared_preferences: ^2.0.18
-  url_launcher: ^6.1.10
-  about: ^2.1.1
   package_info_plus: ^3.0.3
-  adaptive_dialog: ^1.8.2
-  #launch_at_startup: ^0.2.1
-  #auto_updater: ^0.1.6 NEED ADDITIONAL REQUIREMENT
-  flutter_easyloading: ^3.0.5
   auto_updater: ^0.1.6
+
+  # Design
+  about: ^2.1.1
+  cupertino_icons: ^1.0.5
+  adaptive_dialog: ^1.8.2
+  flutter_easyloading: ^3.0.5
+
+  #launch_at_startup: ^0.2.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.1
-  msix: ^3.8.2
-
-msix_config:
-  display_name: LMS
-  publisher_display_name: Francesco Vezzani
-  publisher:
-  identity_name:
-  msix_version: 1.0.3.4
-  logo_path: ./assets/icon.png
-  languages: en-us
-  capabilities: "internetClient"
-  app_installer:
-    publish_folder_path: C:\Users\franc\Desktop\lms\installers
-    hours_between_update_checks: 0
-    automatic_background_task: true
-    update_blocks_activation: true
-    show_prompt: true
-    force_update_from_any_version: true
 
 flutter:
 
