@@ -5,15 +5,15 @@
         <description>Most recent updates to LMS</description>
         <language>en</language>
         <item>
-            <title>Version 1.1.0</title>
+            <title>Version 0.0.4</title>
             <sparkle:releaseNotesLink>
                 https://your_domain/your_path/release_notes.html
             </sparkle:releaseNotesLink>
-            <pubDate>Mon, 6 Mar 2023 12:00:00 +0800</pubDate>
-            <enclosure url="0.0.4+6/lms-0.0.4+6-macos.zip"
-                sparkle:edSignature="cJA5AlmJTVfhOIbvCRC8pS1lrqu9iJ2hVZDyNu0AqhuyID3LXwiwZSg8+katIo57oU1iM6ihE0gEXk8pQaz7Ag=="
-                length="60473483"
-                sparkle:version="0.0.4"
+            <pubDate>Mon, 6 Mar 2023 13:00:00 +0800</pubDate>
+            <enclosure url="0.0.5+6/lms-0.0.5+6-macos.zip"
+                sparkle:edSignature="xKL+Dqgea7dUK9xBUcG5NqC4pKmX3bo2IeEbu7QGc7XEsY8kUlM1bVsingQJij63aCLuTn0CPZc54wd+xZJ8Aw=="
+                length="60473350"
+                sparkle:version="0.0.5"
                 sparkle:os="macos"
                 type="application/octet-stream" />
         </item>
