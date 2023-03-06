@@ -68,27 +68,29 @@ class _MyHomePageState extends State<MyHomePage> {
             onTap: () => showAboutApp(context),
           ),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              if (links != null && links!.isNotEmpty) ...{
-                Wrap(
-                  children: [
-                    for (LMSContent content in links!) ...[
-                      LMSContentWidget(
-                          lmsContent: content,
-                          onDeleted: () async => await DatabaseLocal(db)
-                              .deleteLink(id: content.id.toString())
-                              .whenComplete(() => DatabaseLocal(db)
-                                  .readDB()
-                                  .then((value) =>
-                                      setState(() => links = value))))
-                    ]
-                  ],
-                )
-              }
-            ],
+        body: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                if (links != null && links!.isNotEmpty) ...{
+                  Wrap(
+                    children: [
+                      for (LMSContent content in links!) ...[
+                        LMSContentWidget(
+                            lmsContent: content,
+                            onDeleted: () async => await DatabaseLocal(db)
+                                .deleteLink(id: content.id.toString())
+                                .whenComplete(() => DatabaseLocal(db)
+                                    .readDB()
+                                    .then((value) =>
+                                        setState(() => links = value))))
+                      ]
+                    ],
+                  )
+                }
+              ],
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
