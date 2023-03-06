@@ -1,7 +1,23 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-[0.0.2]: https://github.com/kekko7072/lms/releases/tag/0.0.2
+[0.0.4]: https://github.com/kekko7072/lms/releases/tag/0.0.4
+
+## [0.0.4] - 2023-03-06
+### Fixed issue
+- Solved scroll bug with large contents
+### Added
+- Instruction on info file
+
+[0.0.4]: https://github.com/kekko7072/lms/releases/tag/0.0.4
+
+## [0.0.3] - 2023-02-07
+### Fixed issue
+- Solved bug on SQL 
+### Added
+- Code snapshot as submodel of link
+
+[0.0.3]: https://github.com/kekko7072/lms/releases/tag/0.0.3
 
 ## [0.0.2] - 2023-02-07
 ### Fixed issue
@@ -10,7 +26,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Release file for windows on README.md
 
-[0.0.1]: https://github.com/kekko7072/lms/releases/tag/0.0.1
+[0.0.2]: https://github.com/kekko7072/lms/releases/tag/0.0.2
 
 ## [0.0.1] - 2022-04-17
 ### Added
