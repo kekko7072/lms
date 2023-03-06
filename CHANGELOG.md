@@ -1,7 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-[0.0.4]: https://github.com/kekko7072/lms/releases/tag/0.0.4
+[0.0.5]: https://github.com/kekko7072/lms/releases/tag/0.0.5
+
+## [0.0.5] - 2023-03-06
+### Added
+- Implemented system of auto update release on macOS
 
 ## [0.0.4] - 2023-03-06
 ### Fixed issue
