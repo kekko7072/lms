@@ -10,6 +10,7 @@ export 'package:package_info_plus/package_info_plus.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_easyloading/flutter_easyloading.dart';
 export 'package:url_launcher/url_launcher_string.dart';
+export 'package:auto_updater/auto_updater.dart';
 
 export 'package:lms/constants.dart';
 

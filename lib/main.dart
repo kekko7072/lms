@@ -4,6 +4,10 @@ import 'package:flutter/cupertino.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await autoUpdater.setFeedURL(kFeedURL);
+  await autoUpdater.checkForUpdates();
+  await autoUpdater.setScheduledCheckInterval(3600);
+
   sqfliteFfiInit();
 
   runApp(const MyApp());

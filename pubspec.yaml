@@ -22,6 +22,7 @@ dependencies:
   #launch_at_startup: ^0.2.1
   #auto_updater: ^0.1.6 NEED ADDITIONAL REQUIREMENT
   flutter_easyloading: ^3.0.5
+  auto_updater: ^0.1.6
 
 dev_dependencies:
   flutter_test:
