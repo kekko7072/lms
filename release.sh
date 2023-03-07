@@ -1,11 +1,16 @@
 #!/bin/bash
 
+echo 
+
+# Ask user to insert the version number matching in pubspec.yaml
+read -p "Insert number of release from pubspec.yaml: " release_version
+
 # Ask user to choose between macOS or Windows
 echo "Possible platform to release:"
 echo "+ 0: macOS"
 echo "+ 1: Windows"
 # Prompt the user to choose between macOS or Windows
-read -p "Insert number of platform: " release_choice
+read -p "Select platform: " release_choice
 
 if [ "$release_choice" == "0" ]; then
 
@@ -30,10 +35,11 @@ if [ "$release_choice" == "0" ]; then
     echo "Signature: $signature"
     echo "Length: $length"
 
-    # Update appcast.xml
-    sed -i '' "s/sparkle:edSignature=\"[^\"]*\"/sparkle:edSignature=\"$signature\"/" appcast.xml
-    sed -i '' "s/sparkle:length=\"[0-9]*\"/sparkle:length=\"$length\"/" appcast.xml
-    sed -i '' "s/url=\".*\.zip\"/url=\"$url\"/" appcast.xml
+    file_path="dist/appcast.xml"
+    replacement="<item>\n<title>Version $release_number</title>\n<sparkle:releaseNotesLink>\nhttps://your_domain/your_path/release_notes.html\n</sparkle:releaseNotesLink>\n<pubDate>Mon, 6 Mar 2023 13:00:00 +0800</pubDate>\n<enclosure url="$$output"\nsparkle:edSignature="$signature"\nlength="$length"\nsparkle:version="$release_number"\nsparkle:os="macos"\ntype="application/octet-stream" />\n</item>"
+
+    # Use sed to replace the text between the #macOS div tags
+    sed -i -e 's|\(<!--macOS_start-->\).*\(<!--macOS_end-->\)|\1'"$replacement"'\2|g' "$file_path"
 
 elif [ "$release_choice" == "1" ]; then
     flutter_distributor release --name dev --jobs release-windows

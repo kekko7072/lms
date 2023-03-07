@@ -4,6 +4,7 @@
         <title>LMS - Link Management System</title>
         <description>Most recent updates to LMS</description>
         <language>en</language>
+        <!--macOS_start-->
         <item>
             <title>Version 0.0.5</title>
             <sparkle:releaseNotesLink>
@@ -17,6 +18,8 @@
                 sparkle:os="macos"
                 type="application/octet-stream" />
         </item>
+        <!--macOS_end-->
+        <!--windows_start-->
         <item>
             <title>Version 0.0.4</title>
             <sparkle:releaseNotesLink>
@@ -30,5 +33,6 @@
                 length="0"
                 type="application/octet-stream" />
         </item>
+        <!--windows_end-->
     </channel>
 </rss>
