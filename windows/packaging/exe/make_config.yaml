@@ -4,6 +4,5 @@ publisher_url: https://github.com/kekko7072/lms
 display_name: LMS
 create_desktop_icon: true
 install_dir_name: LMS
-script_template: custom_inno_script.iss
 locales:
   - en

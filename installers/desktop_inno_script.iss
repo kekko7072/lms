@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "LMS"
-#define MyAppVersion "0.0.3"
+#define MyAppVersion "0.0.6"
 #define MyAppPublisher "Francesco Vezzani"
 #define MyAppExeName "lms.exe"
 #define MyAppAssocName MyAppName + " Link"
@@ -12,7 +12,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{6C4D4B84-F3FE-4057-BEA8-E6FC962E4789}
+AppId={{522E4865-600A-44EE-A635-B31EE4E25742}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -43,6 +43,8 @@ Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\flutter_windows
 Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\sqlite3.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\dynamic_color_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\url_launcher_windows_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\auto_updater_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\WinSparkle.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\data\*"; DestDir: "{app}\data"; Flags: ignoreversion recursesubdirs createallsubdirs
 ;Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\db\*"; DestDir: "{app}\db"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
