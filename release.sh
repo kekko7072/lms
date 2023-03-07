@@ -2,8 +2,6 @@
 
 echo 
 
-# Ask user to insert the version number matching in pubspec.yaml
-read -p "Insert number of release from pubspec.yaml: " release_version
 
 # Ask user to choose between macOS or Windows
 echo "Possible platform to release:"
@@ -35,14 +33,36 @@ if [ "$release_choice" == "0" ]; then
     echo "Signature: $signature"
     echo "Length: $length"
 
-    # Define the replacement text
-    replacement_text="<item>\n<title>Version $release_version</title>\n<sparkle:releaseNotesLink>\nhttps://your_domain/your_path/release_notes.html\n</sparkle:releaseNotesLink>\n<pubDate>Mon, 6 Mar 2023 13:00:00 +0800</pubDate>\n<enclosure url=\"$output\"\nsparkle:edSignature=\"$signature\"\nlength=\"$length\"\nsparkle:version=\"$release_version\"\nsparkle:os=\"macos\"\ntype=\"application/octet-stream\" />\n</item>"
+    echo "Update appcast.xml macos"
 
-    # Use sed to replace the text between the <!--macOS_start--> and <!--macOS_end--> comments with the replacement text
-    sed -i '' '/<!--macOS_start-->/,/<\!--macOS_end-->/c\'"$replacement_text"'' dist/appcast.xml
 
 elif [ "$release_choice" == "1" ]; then
-    flutter_distributor release --name dev --jobs release-windows
+
+    # Print what you will run
+    echo "flutter_distributor release --name dev --jobs release-windows"
+
+    # Run the command and store the output in the variable
+    url=$(flutter_distributor release --name dev --jobs release-windows | grep -o "dist/.*\.zip")
+
+    # Print the value of the variable
+    echo "BUILD PATH: $url"
+
+    # Sign code
+    echo "flutter pub run auto_updater:sign_update $url"
+    output=$(flutter pub run auto_updater:sign_update "$url")
+    echo "$output"
+
+    # Get variables of signed and length
+    signature=$(echo "$output" | grep -o 'sparkle:edSignature="[a-zA-Z0-9+/]*=="' | awk -F'"' '{print $2}')
+    length=$(echo "$output" | grep -o 'length="[0-9]*"' | awk -F'"' '{print $2}')
+
+    echo "Signature: $signature"
+    echo "Length: $length"
+
+    echo "Update appcast.xml windows"
+
+    echo "Then run npm run deploy"
+
 else
     echo "Invalid release choice. Please choose between 'macOS' or 'Windows'."
     exit 1

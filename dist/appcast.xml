@@ -10,15 +10,16 @@
             <sparkle:releaseNotesLink>
                 https://your_domain/your_path/release_notes.html
             </sparkle:releaseNotesLink>
-            <pubDate>Mon, 6 Mar 2023 13:00:00 +0800</pubDate>
-            <enclosure url="0.0.5+6/lms-0.0.5+6-macos.zip"
-                sparkle:edSignature="xKL+Dqgea7dUK9xBUcG5NqC4pKmX3bo2IeEbu7QGc7XEsY8kUlM1bVsingQJij63aCLuTn0CPZc54wd+xZJ8Aw=="
-                length="60473350"
-                sparkle:version="0.0.5"
+            <pubDate>Mon, 7 Mar 2023 13:00:00 +0800</pubDate>
+            <enclosure url="0.0.6+7/lms0.0.6+7-macos.zip"
+                sparkle:edSignature="zjwwtCLwfHHWVInjXrQJE7/qa8Vz2DfgtqXEoh97BcimLp/uBlKDOzh91BN7IMv6LxcAiJJ1xuHSwky5yN8bDg=="
+                length="60472476"
+                sparkle:version="0.0.6"
                 sparkle:os="macos"
                 type="application/octet-stream" />
         </item>
         <!--macOS_end-->
+
         <!--windows_start-->
         <item>
             <title>Version 0.0.4</title>
@@ -26,11 +27,11 @@
                 https://your_domain/your_path/release_notes.html
             </sparkle:releaseNotesLink>
             <pubDate>Mon, 6 Mar 2023 12:00:00 +0800</pubDate>
-            <enclosure url="1.1.0+2/auto_updater_example-1.1.0+2-windows.exe"
-                sparkle:dsaSignature="MEUCIQCVbVzVID7H3aUzAY5znpi+ySZKznkukV8whlMFzKh66AIgREUGOmvavlcg6hwAwkb2o4IqVE/D56ipIBshIqCH8rk="
-                sparkle:version="1.1.0"
-                sparkle:os="windows"
+            <enclosure url="0.0.6+7/lms0.0.6+7-windows.exe"
+                sparkle:dsaSignature=""
                 length="0"
+                sparkle:version="0.0.6"
+                sparkle:os="windows"
                 type="application/octet-stream" />
         </item>
         <!--windows_end-->
