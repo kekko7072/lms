@@ -2,8 +2,6 @@
 
 echo 
 
-# Ask user to insert the version number matching in pubspec.yaml
-read -p "Insert number of release from pubspec.yaml: " release_version
 
 # Ask user to choose between macOS or Windows
 echo "Possible platform to release:"
@@ -35,11 +33,8 @@ if [ "$release_choice" == "0" ]; then
     echo "Signature: $signature"
     echo "Length: $length"
 
-    file_path="dist/appcast.xml"
-    replacement="<item>\n<title>Version $release_version</title>\n<sparkle:releaseNotesLink>\nhttps://your_domain/your_path/release_notes.html\n</sparkle:releaseNotesLink>\n<pubDate>Mon, 6 Mar 2023 13:00:00 +0800</pubDate>\n<enclosure url=\"$output\"\nsparkle:edSignature=\"$signature\"\nlength=\"$length\"\nsparkle:version=\"$release_version\"\nsparkle:os=\"macos\"\ntype=\"application/octet-stream\" />\n</item>"
+    echo "Update appcast.xml macos"
 
-    # Use sed to replace the text between the #macOS div tags
-    sed -i 's|\(<!--macOS_start-->\).*\(<!--macOS_end-->\)|\1'"$replacement"'\2|g' "$file_path"
 
 elif [ "$release_choice" == "1" ]; then
 
@@ -63,10 +58,15 @@ elif [ "$release_choice" == "1" ]; then
 
     echo "Signature: $signature"
     echo "Length: $length"
+
+    echo "Update appcast.xml windows"
+
+    echo "Then run npm run deploy"
+
 else
     echo "Invalid release choice. Please choose between 'macOS' or 'Windows'."
     exit 1
 fi
 
 # Deploy to Firebase
-#firebase deploy
+#firebase deploya
