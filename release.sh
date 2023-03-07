@@ -37,11 +37,9 @@ if [ "$release_choice" == "0" ]; then
 
     file_path="dist/appcast.xml"
     replacement="<item>\n<title>Version $release_version</title>\n<sparkle:releaseNotesLink>\nhttps://your_domain/your_path/release_notes.html\n</sparkle:releaseNotesLink>\n<pubDate>Mon, 6 Mar 2023 13:00:00 +0800</pubDate>\n<enclosure url=\"$output\"\nsparkle:edSignature=\"$signature\"\nlength=\"$length\"\nsparkle:version=\"$release_version\"\nsparkle:os=\"macos\"\ntype=\"application/octet-stream\" />\n</item>"
-    
-    replacement="<item>\n<title>Version $release_version</title>\n<sparkle:releaseNotesLink>\nhttps://your_domain/your_path/release_notes.html\n</sparkle:releaseNotesLink>\n<pubDate>Mon, 6 Mar 2023 13:00:00 +0800</pubDate>\n<enclosure url=\"$url\"\nsparkle:edSignature=\"$signature\"\nlength=\"$length\"\nsparkle:version=\"$release_version\"\nsparkle:os=\"macos\"\ntype=\"application/octet-stream\" />\n</item>"
 
     # Use sed to replace the text between the #macOS div tags
-    sed -i '' 's|\(<!--macOS_start-->\).*\(<!--macOS_end-->\)|\1'"$replacement"'\2|g' "$file_path"
+    sed -i 's|\(<!--macOS_start-->\).*\(<!--macOS_end-->\)|\1'"$replacement"'\2|g' "$file_path"
 
 elif [ "$release_choice" == "1" ]; then
 
