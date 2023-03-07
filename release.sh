@@ -44,11 +44,31 @@ if [ "$release_choice" == "0" ]; then
     sed -i '' 's|\(<!--macOS_start-->\).*\(<!--macOS_end-->\)|\1'"$replacement"'\2|g' "$file_path"
 
 elif [ "$release_choice" == "1" ]; then
-    flutter_distributor release --name dev --jobs release-windows
+
+    # Print what you will run
+    echo "flutter_distributor release --name dev --jobs release-windows"
+
+    # Run the command and store the output in the variable
+    url=$(flutter_distributor release --name dev --jobs release-windows | grep -o "dist/.*\.zip")
+
+    # Print the value of the variable
+    echo "BUILD PATH: $url"
+
+    # Sign code
+    echo "flutter pub run auto_updater:sign_update $url"
+    output=$(flutter pub run auto_updater:sign_update "$url")
+    echo "$output"
+
+    # Get variables of signed and length
+    signature=$(echo "$output" | grep -o 'sparkle:edSignature="[a-zA-Z0-9+/]*=="' | awk -F'"' '{print $2}')
+    length=$(echo "$output" | grep -o 'length="[0-9]*"' | awk -F'"' '{print $2}')
+
+    echo "Signature: $signature"
+    echo "Length: $length"
 else
     echo "Invalid release choice. Please choose between 'macOS' or 'Windows'."
     exit 1
 fi
 
 # Deploy to Firebase
-firebase deploy
+#firebase deploy
