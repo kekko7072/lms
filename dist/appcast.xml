@@ -6,15 +6,15 @@
         <language>en</language>
         <!--macOS_start-->
         <item>
-            <title>Version 0.0.5</title>
+            <title>Version 0.0.7</title>
             <sparkle:releaseNotesLink>
                 https://your_domain/your_path/release_notes.html
             </sparkle:releaseNotesLink>
-            <pubDate>Mon, 7 Mar 2023 13:00:00 +0800</pubDate>
-            <enclosure url="0.0.6+7/lms0.0.6+7-macos.zip"
-                sparkle:edSignature="zjwwtCLwfHHWVInjXrQJE7/qa8Vz2DfgtqXEoh97BcimLp/uBlKDOzh91BN7IMv6LxcAiJJ1xuHSwky5yN8bDg=="
-                length="60472476"
-                sparkle:version="0.0.6"
+            <pubDate>Mon, 10 Mar 2023 14:00:00 +0800</pubDate>
+            <enclosure url="0.0.7+7/lms0.0.7+7-macos.zip"
+                sparkle:edSignature="ljDnTHJQdw6Oq+KkNGOS/hGxXcfIXBRXfVH8duDiKeKhQrUK6YqmHGGKEb05gpItTW2lSbZybAGQS0ZrNBFRCw=="
+                length="60668502"
+                sparkle:version="0.0.7"
                 sparkle:os="macos"
                 type="application/octet-stream" />
         </item>
