@@ -17,10 +17,14 @@ export 'package:flutter_easyloading/flutter_easyloading.dart';
 
 export '../constants.dart';
 
-export '../interfaces/add_widget.dart';
 export '../interfaces/about_page.dart';
+export '../interfaces/add_widget.dart';
+export 'package:lms/interfaces/delete_widget.dart';
 export '../interfaces/lms_content_widget.dart';
+export '../interfaces/group_widget.dart';
 
+export '../models/app_data.dart';
+export '../models/group.dart';
 export '../models/lms_content.dart';
 
 export '../services/database_local.dart';

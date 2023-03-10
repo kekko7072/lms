@@ -2,8 +2,12 @@ import 'package:lms/services/imports.dart';
 
 class LMSContentWidget extends StatefulWidget {
   const LMSContentWidget(
-      {Key? key, required this.lmsContent, required this.onDeleted})
+      {Key? key,
+      required this.db,
+      required this.lmsContent,
+      required this.onDeleted})
       : super(key: key);
+  final Database db;
   final LMSContent lmsContent;
   final Function onDeleted;
 
@@ -52,7 +56,16 @@ class _LMSContentWidgetState extends State<LMSContentWidget> {
                 Align(
                     alignment: Alignment.topRight,
                     child: IconButton(
-                      onPressed: () async => await widget.onDeleted(),
+                      onPressed: () async => showDialog(
+                          context: context,
+                          builder: (builder) => DeleteWidget(
+                              title:
+                                  "Delete content ${widget.lmsContent.title}",
+                              onDeleted: () async =>
+                                  await DatabaseLocal(widget.db)
+                                      .dbLMSContentDELETE(
+                                          id: widget.lmsContent.id.toString())
+                                      .then((value) => widget.onDeleted()))),
                       icon: const Icon(
                         Icons.close,
                         color: Colors.red,
