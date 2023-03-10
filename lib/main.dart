@@ -1,6 +1,8 @@
 import 'package:lms/services/imports.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'interfaces/left_menu.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -40,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Database? db;
 
   AppData? appData;
+  int groupIdSelected = 0;
 
   @override
   void initState() {
@@ -70,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onTap: () => showAboutApp(context),
           ),
         ),
+        drawer: const LeftMenu(),
         body: SingleChildScrollView(
           child: Center(
             child: Column(
@@ -79,32 +83,37 @@ class _MyHomePageState extends State<MyHomePage> {
                   if (appData?.groups != null &&
                       appData!.groups.isNotEmpty) ...[
                     Wrap(
-                      direction: Axis.vertical,
                       alignment: WrapAlignment.center,
                       children: [
                         for (Group group in appData!.groups) ...[
                           GroupWidget(
                             db: db!,
                             group: group,
+                            selected: groupIdSelected == group.id,
+                            onSelected: (id) =>
+                                setState(() => groupIdSelected = id),
                             onDeleted: () async => await DatabaseLocal(db)
                                 .readDB()
                                 .then(
                                     (value) => setState(() => appData = value)),
-                            contents: [
-                              for (LMSContent content in appData!.contents
-                                  .where((element) =>
-                                      element.groupId == group.id)) ...[
-                                LMSContentWidget(
-                                    db: db!,
-                                    lmsContent: content,
-                                    onDeleted: () async => await DatabaseLocal(
-                                            db)
-                                        .readDB()
-                                        .then((value) =>
-                                            setState(() => appData = value)))
-                              ]
-                            ],
                           )
+                        ]
+                      ],
+                    ),
+                    Wrap(
+                      direction: Axis.vertical,
+                      alignment: WrapAlignment.center,
+                      children: [
+                        for (LMSContent content in appData!.contents.where(
+                            (element) =>
+                                element.groupId == groupIdSelected)) ...[
+                          LMSContentWidget(
+                              db: db!,
+                              lmsContent: content,
+                              onDeleted: () async => await DatabaseLocal(db)
+                                  .readDB()
+                                  .then((value) =>
+                                      setState(() => appData = value)))
                         ]
                       ],
                     )

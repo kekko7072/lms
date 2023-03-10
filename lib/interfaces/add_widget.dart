@@ -85,27 +85,6 @@ class _AddWidgetState extends State<AddWidget> {
             ),
             const SizedBox(height: 10),
           ] else ...[
-            Wrap(
-              alignment: WrapAlignment.spaceEvenly,
-              children: [
-                for (Group group in widget.appData.groups) ...[
-                  ActionChip(
-                    elevation: 2.0,
-                    padding: const EdgeInsets.all(5.0),
-                    label: Text(
-                      group.title,
-                      style: TextStyle(
-                          color:
-                              groupId == group.id ? Colors.white : Colors.pink),
-                    ),
-                    onPressed: () => setState(() => groupId = group.id),
-                    backgroundColor:
-                        groupId == group.id ? Colors.pink : Colors.white,
-                  ),
-                ]
-              ],
-            ),
-            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -177,6 +156,30 @@ class _AddWidgetState extends State<AddWidget> {
               minLines: linkType == LinkType.code ? 2 : 1,
               maxLines: linkType == LinkType.code ? 5 : 2,
               onChanged: (value) => url = value,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 15.0),
+              child: Divider(),
+            ),
+            Wrap(
+              alignment: WrapAlignment.spaceEvenly,
+              children: [
+                for (Group group in widget.appData.groups) ...[
+                  ActionChip(
+                    elevation: 2.0,
+                    padding: const EdgeInsets.all(5.0),
+                    label: Text(
+                      group.title,
+                      style: TextStyle(
+                          color:
+                              groupId == group.id ? Colors.white : Colors.pink),
+                    ),
+                    onPressed: () => setState(() => groupId = group.id),
+                    backgroundColor:
+                        groupId == group.id ? Colors.pink : Colors.white,
+                  ),
+                ]
+              ],
             ),
           ],
         ]),
