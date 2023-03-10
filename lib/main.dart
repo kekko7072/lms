@@ -116,7 +116,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                       setState(() => appData = value)))
                         ]
                       ],
-                    )
+                    ),
+                    const SizedBox(height: 10),
                   ]
                 ]
               ],
