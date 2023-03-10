@@ -7,9 +7,6 @@
         <!--macOS_start-->
         <item>
             <title>Version 0.0.7</title>
-            <sparkle:releaseNotesLink>
-                https://your_domain/your_path/release_notes.html
-            </sparkle:releaseNotesLink>
             <pubDate>Mon, 10 Mar 2023 14:00:00 +0800</pubDate>
             <enclosure url="0.0.7+7/lms0.0.7+7-macos.zip"
                 sparkle:edSignature="ljDnTHJQdw6Oq+KkNGOS/hGxXcfIXBRXfVH8duDiKeKhQrUK6YqmHGGKEb05gpItTW2lSbZybAGQS0ZrNBFRCw=="

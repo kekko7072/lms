@@ -32,15 +32,19 @@ class DatabaseLocal {
     if (await configured() && (await db?.getVersion())! == kDBVersion) {
       debugPrint("Database already created");
     } else if (await configured() && (await db?.getVersion())! < kDBVersion) {
-      //Command to update
-      await db?.execute('ALTER TABLE $kDBTable ADD COLUMN groupId INTEGER');
+      try {
+        //Command to update
+        await db?.execute('ALTER TABLE $kDBTable ADD COLUMN groupId INTEGER');
 
-      await dbGroupINIT();
+        await dbGroupINIT();
 
-      await dbGroupADD(const Group(
-          id: 0,
-          title: "First group",
-          description: "This is your first group"));
+        await dbGroupADD(const Group(
+            id: 0,
+            title: "First group",
+            description: "This is your first group"));
+      } catch (e) {
+        debugPrint("Error in update");
+      }
 
       //Update version of DB
       await db?.setVersion(kDBVersion);
