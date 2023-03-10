@@ -27,7 +27,7 @@
                 https://your_domain/your_path/release_notes.html
             </sparkle:releaseNotesLink>
             <pubDate>Mon, 6 Mar 2023 12:00:00 +0800</pubDate>
-            <enclosure url="0.0.6+7/lms0.0.6+7-windows.exe"
+            <enclosure url="0.0.6/lms0.0.6+7-windows.exe"
                 sparkle:dsaSignature="1cNiqpaovPw+aFKq3Q4dIa1GOLWBd3fUBdl9Poi5lA1ABrwJWSPW/lX91SQ+++jiARoj5p7ZWZrJ1KiujY3wAw=="
                 length="11007450"
                 sparkle:version="0.0.6"
