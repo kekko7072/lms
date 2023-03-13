@@ -6,15 +6,12 @@
         <language>en</language>
         <!--macOS_start-->
         <item>
-            <title>Version 0.0.5</title>
-            <sparkle:releaseNotesLink>
-                https://your_domain/your_path/release_notes.html
-            </sparkle:releaseNotesLink>
-            <pubDate>Mon, 7 Mar 2023 13:00:00 +0800</pubDate>
-            <enclosure url="0.0.6+7/lms0.0.6+7-macos.zip"
-                sparkle:edSignature="zjwwtCLwfHHWVInjXrQJE7/qa8Vz2DfgtqXEoh97BcimLp/uBlKDOzh91BN7IMv6LxcAiJJ1xuHSwky5yN8bDg=="
-                length="60472476"
-                sparkle:version="0.0.6"
+            <title>Version 1.0.0</title>
+            <pubDate>Mon, 10 Mar 2023 14:00:00 +0800</pubDate>
+            <enclosure url="1.0.0+8/lms-1.0.0+8-macos.zip"
+                sparkle:edSignature="QI2wAT1E1kT9YmfBVeMWDqTrZOsQHEwqBNCZNxdqxNk8l32OTmiRUpDgixJlqS3zY7dzfpEi8SjzhibIhOXDDA=="
+                length="60672226"
+                sparkle:version="1.0.0"
                 sparkle:os="macos"
                 type="application/octet-stream" />
         </item>
@@ -27,7 +24,7 @@
                 https://your_domain/your_path/release_notes.html
             </sparkle:releaseNotesLink>
             <pubDate>Mon, 6 Mar 2023 12:00:00 +0800</pubDate>
-            <enclosure url="0.0.6+7/lms0.0.6+7-windows.exe"
+            <enclosure url="0.0.6/lms0.0.6+7-windows.exe"
                 sparkle:dsaSignature="1cNiqpaovPw+aFKq3Q4dIa1GOLWBd3fUBdl9Poi5lA1ABrwJWSPW/lX91SQ+++jiARoj5p7ZWZrJ1KiujY3wAw=="
                 length="11007450"
                 sparkle:version="0.0.6"

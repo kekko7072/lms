@@ -1,6 +1,8 @@
 import 'package:lms/services/imports.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'interfaces/left_menu.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -39,16 +41,17 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   Database? db;
 
-  List<LMSContent>? links;
+  AppData? appData;
+  int groupIdSelected = 0;
 
   @override
   void initState() {
     super.initState();
-    DatabaseLocal.open().then((value) {
+    DatabaseLocal.openDB().then((value) {
       db = value;
       DatabaseLocal(value)
-          .init()
-          .then((value) => setState(() => links = value));
+          .initDB()
+          .then((value) => setState(() => appData = value));
     });
   }
 
@@ -60,8 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    //DatabaseLocal(db).readDB().then((value) => setState(() => links = value));
-
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -72,27 +73,53 @@ class _MyHomePageState extends State<MyHomePage> {
             onTap: () => showAboutApp(context),
           ),
         ),
+        drawer: const LeftMenu(),
         body: SingleChildScrollView(
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                if (links != null && links!.isNotEmpty) ...{
-                  Wrap(
-                    children: [
-                      for (LMSContent content in links!) ...[
-                        LMSContentWidget(
-                            lmsContent: content,
+                if (appData != null) ...[
+                  if (appData?.groups != null &&
+                      appData!.groups.isNotEmpty) ...[
+                    Wrap(
+                      alignment: WrapAlignment.center,
+                      children: [
+                        for (Group group in appData!.groups) ...[
+                          GroupWidget(
+                            db: db!,
+                            group: group,
+                            selected: groupIdSelected == group.id,
+                            onSelected: (id) =>
+                                setState(() => groupIdSelected = id),
                             onDeleted: () async => await DatabaseLocal(db)
-                                .deleteLink(id: content.id.toString())
-                                .whenComplete(() => DatabaseLocal(db)
-                                    .readDB()
-                                    .then((value) =>
-                                        setState(() => links = value))))
-                      ]
-                    ],
-                  )
-                }
+                                .readDB()
+                                .then(
+                                    (value) => setState(() => appData = value)),
+                          )
+                        ]
+                      ],
+                    ),
+                    Wrap(
+                      direction: Axis.vertical,
+                      alignment: WrapAlignment.center,
+                      children: [
+                        for (LMSContent content in appData!.contents.where(
+                            (element) =>
+                                element.groupId == groupIdSelected)) ...[
+                          LMSContentWidget(
+                              db: db!,
+                              lmsContent: content,
+                              onDeleted: () async => await DatabaseLocal(db)
+                                  .readDB()
+                                  .then((value) =>
+                                      setState(() => appData = value)))
+                        ]
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                  ]
+                ]
               ],
             ),
           ),
@@ -103,18 +130,34 @@ class _MyHomePageState extends State<MyHomePage> {
             barrierDismissible: false, // user must tap button!
             builder: (BuildContext context) {
               return AddWidget(
-                  onPressed: (LMSContent content) async =>
-                      await DatabaseLocal(db).addLink(content).then((value) {
-                        Navigator.of(context).pop();
-                        value["success"]
-                            ? EasyLoading.showSuccess(value["message"],
-                                duration: const Duration(seconds: 2))
-                            : EasyLoading.showError(value["message"],
-                                duration: const Duration(seconds: 5));
-                        DatabaseLocal(db)
-                            .readDB()
-                            .then((value) => setState(() => links = value));
-                      }));
+                  appData: appData!,
+                  onPressed:
+                      (bool addGroup, Group group, LMSContent content) async {
+                    addGroup
+                        ? await DatabaseLocal(db)
+                            .dbGroupADD(group)
+                            .then((value) async {
+                            Navigator.of(context).pop();
+                            value["success"]
+                                ? EasyLoading.showSuccess(value["message"],
+                                    duration: const Duration(seconds: 2))
+                                : EasyLoading.showError(value["message"],
+                                    duration: const Duration(seconds: 5));
+                          })
+                        : await DatabaseLocal(db)
+                            .dbLMSContentADD(content)
+                            .then((value) {
+                            Navigator.of(context).pop();
+                            value["success"]
+                                ? EasyLoading.showSuccess(value["message"],
+                                    duration: const Duration(seconds: 2))
+                                : EasyLoading.showError(value["message"],
+                                    duration: const Duration(seconds: 5));
+                          });
+                    await DatabaseLocal(db)
+                        .readDB()
+                        .then((value) => setState(() => appData = value));
+                  });
             },
           ),
           tooltip: 'Add link',

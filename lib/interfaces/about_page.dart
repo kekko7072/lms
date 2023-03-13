@@ -27,6 +27,11 @@ Future<void> showAboutApp(BuildContext context) async =>
                 const LicensesPageListTile(
                   icon: Icon(Icons.favorite),
                 ),
+                ListTile(
+                  leading: const Icon(Icons.update),
+                  title: const Text('Check for update'),
+                  onTap: () async => await autoUpdater.checkForUpdates(),
+                ),
               ],
               applicationIcon: const SizedBox(
                 width: 100,

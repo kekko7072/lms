@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 enum LinkType { url, code }
 
 class LMSContent {
-  //Ok null safety ma quando serve, questi valori non devono essere null senno la UX non va bene
   final int id;
+  final int groupId;
   final String title;
   final String description;
   final String content;
@@ -12,6 +12,7 @@ class LMSContent {
 
   const LMSContent({
     required this.id,
+    required this.groupId,
     required this.title,
     required this.description,
     required this.content,
@@ -20,6 +21,7 @@ class LMSContent {
 
   static Map<String, Object?> toJson(LMSContent content) {
     return <String, Object?>{
+      'groupId': content.groupId,
       'title': content.title,
       'description': content.description,
       'content': content.content,
@@ -43,6 +45,7 @@ class LMSContent {
 
     return LMSContent(
       id: json['id'] ?? 0,
+      groupId: json['groupId'] ?? 0,
       title: json['title'] ?? '',
       description: json['description'] ?? '',
       content: json['content'] ?? '',
