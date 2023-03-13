@@ -1,8 +1,11 @@
+script_template: "custom_inno_script.iss"
 app_id: 522E4865-600A-44EE-A635-B31EE4E25742
 publisher: FrancescoVezzani
 publisher_url: https://github.com/kekko7072/lms
 display_name: LMS
 create_desktop_icon: true
+launch_at_startup: true
 install_dir_name: LMS
 locales:
   - en
+  - it
