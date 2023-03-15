@@ -30,8 +30,8 @@
             <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
             <pubDate>Mon, 6 Mar 2023 12:00:00 +0800</pubDate>
             <enclosure url="1.0.1/lms-1.0.1+9-windows.exe"
-                sparkle:dsaSignature="1cNiqpaovPw+aFKq3Q4dIa1GOLWBd3fUBdl9Poi5lA1ABrwJWSPW/lX91SQ+++jiARoj5p7ZWZrJ1KiujY3wAw=="
-                length="11007450"
+                sparkle:dsaSignature="AJ8AFZT3sUB6YKyTPCc1qTNw/t3SaHhzqzUVJXr2ae/XHql3M8aT+aM3LajyIA3kiyWNiDncwiXAfG+r4KN2CQ=="
+                length="11032456"
                 sparkle:os="windows"
                 type="application/octet-stream" />
         </item>
