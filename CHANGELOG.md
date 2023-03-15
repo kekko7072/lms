@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+[1.0.1]: https://github.com/kekko7072/lms/releases/tag/1.0.1
+
+## [1.0.1] - 2023-03-15
+### Fixed issue
+- Solved issue on auto update on macOS due to Sandbox on XCode
+### Added
+- Implemented system of auto update and release on windows
+- Added group of content
+
 [0.0.5]: https://github.com/kekko7072/lms/releases/tag/0.0.5
 
 ## [0.0.5] - 2023-03-06
