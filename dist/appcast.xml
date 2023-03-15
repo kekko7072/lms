@@ -6,20 +6,20 @@
         <language>en</language>
         <!--macOS-->
         <item>
-            <title>Version 1.0.0</title>
+            <title>Version 2.0.0</title>
             <pubDate>Mon, 10 Mar 2023 14:00:00 +0800</pubDate>
             <sparkle:releaseNotesLink>
                 https://github.com/kekko7072/lms/releases
             </sparkle:releaseNotesLink>
-            <sparkle:version>10</sparkle:version>
-            <sparkle:shortVersionString>1.0.0+8</sparkle:shortVersionString>
-            <enclosure url="1.0.0+8/lms-1.0.0+8-macos.zip"
-                sparkle:edSignature="QI2wAT1E1kT9YmfBVeMWDqTrZOsQHEwqBNCZNxdqxNk8l32OTmiRUpDgixJlqS3zY7dzfpEi8SjzhibIhOXDDA=="
-                length="60672226"
-                sparkle:os="macos"
-                type="application/octet-stream" />
-        </item>
-        <!--macOS-->
+        <sparkle:version>1.0.0</sparkle:version> <!--Use BUILD_VERSION-->
+        <sparkle:shortVersionString>1.0.0+8</sparkle:shortVersionString>
+        <enclosure url="1.0.0+8/lms-1.0.0+8-macos.zip"
+            sparkle:edSignature="QI2wAT1E1kT9YmfBVeMWDqTrZOsQHEwqBNCZNxdqxNk8l32OTmiRUpDgixJlqS3zY7dzfpEi8SjzhibIhOXDDA=="
+            length="60672226"
+            sparkle:os="macos"
+            type="application/octet-stream" />
+    </item>
+    <!--macOS-->
         <!--windows-->
         <item>
             <title>Version 0.0.4</title>
