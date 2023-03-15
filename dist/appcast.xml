@@ -14,8 +14,8 @@
         <sparkle:version>9</sparkle:version> <!--Use BUILD_VERSION-->
         <sparkle:shortVersionString>1.0.1+9</sparkle:shortVersionString>
         <enclosure url="1.0.1+9/lms-1.0.1+9-macos.zip"
-            sparkle:edSignature="6OixYW/ei/La9T7Ubs7AvPWFLl5pdH7AIqDZZMIwjZvvoBHommr4kaLjbwlUZFrCRFcjD/8a5sgbRotjOXDLCQ=="
-            length="60686077"
+            sparkle:edSignature="/yEV8pMHkLTaVDMovNv4l5RLZze0RXlx3EpqELnANyRCIv/eHHulf1qUbOwyv5wswO9NeT69yW+SznZAIW0RBQ=="
+            length="18666169"
             sparkle:os="macos"
             type="application/octet-stream" />
     </item>
