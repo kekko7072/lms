@@ -3,7 +3,8 @@ description: Link Management System
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.1+9 #Online macOS 1.0.1 windows 1.0.1
+# Using previous version to see if auto-update works on windows
+version: 1.0.1+8 #Online macOS 1.0.1+9 windows 1.0.1+9
 
 environment:
   sdk: ">=2.16.1 <3.0.0"
@@ -16,7 +17,7 @@ dependencies:
   url_launcher: ^6.1.10
   sqflite_common: ^2.4.3
   sqflite_common_ffi: ^2.2.2
-  shared_preferences: ^2.0.18
+  shared_preferences: ^2.0.20
   package_info_plus: ^3.0.3
   auto_updater: ^0.1.6
 
