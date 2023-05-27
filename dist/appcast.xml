@@ -6,33 +6,32 @@
         <language>en</language>
         <!--macOS-->
         <item>
-            <title>Version 1.0.1</title>
+            <title>Version 1.1.0</title>
             <pubDate>Mon, 10 Mar 2023 14:00:00 +0800</pubDate>
             <sparkle:releaseNotesLink>
                 https://github.com/kekko7072/lms/releases
             </sparkle:releaseNotesLink>
         <sparkle:version>9</sparkle:version> <!--Use BUILD_VERSION-->
         <sparkle:shortVersionString>1.0.1+9</sparkle:shortVersionString>
-        <enclosure url="1.0.1+9/lms-1.0.1+9-macos.zip"
-            sparkle:edSignature="/yEV8pMHkLTaVDMovNv4l5RLZze0RXlx3EpqELnANyRCIv/eHHulf1qUbOwyv5wswO9NeT69yW+SznZAIW0RBQ=="
-            length="18666169"
+        <enclosure url="1.1.0+10/lms-1.1.0+10-macos.zip"
+            sparkle:edSignature="Z6LKvT+iEBlDZjD77abninDAP1A+EGXP1OWdBV8qSoSXr9coNyCrrjjEXJmh7tYCI/NMSO4X6MLc3YQBfvYLAQ=="
+            length="18071357"
             sparkle:os="macos"
             type="application/octet-stream" />
     </item>
     <!--macOS-->
         <!--windows-->
         <item>
-            <title>Version 1.0.1</title>
+            <title>Version 1.1.0</title>
             <sparkle:releaseNotesLink>
                 https://github.com/kekko7072/lms/releases
             </sparkle:releaseNotesLink>
-            <sparkle:version>9</sparkle:version> <!--Use BUILD_VERSION-->
-            <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
-            <pubDate>Mon, 6 Mar 2023 12:00:00 +0800</pubDate>
-            <enclosure url="1.0.1/lms-1.0.1+9-windows.exe"
-                sparkle:dsaSignature="AJ8AFZT3sUB6YKyTPCc1qTNw/t3SaHhzqzUVJXr2ae/XHql3M8aT+aM3LajyIA3kiyWNiDncwiXAfG+r4KN2CQ=="
-                length="11032456"
+            <pubDate>Sun, 16 Feb 2022 12:00:00 +0800</pubDate>
+            <enclosure url="1.1.0/lms-1.1.0+10-windows.exe"
+                sparkle:dsaSignature="MEUCIQCVbVzVID7H3aUzAY5znpi+ySZKznkukV8whlMFzKh66AIgREUGOmvavlcg6hwAwkb2o4IqVE/D56ipIBshIqCH8rk="
+                sparkle:version="1.1.0+2"
                 sparkle:os="windows"
+                length="0"
                 type="application/octet-stream" />
         </item>
         <!--windows-->

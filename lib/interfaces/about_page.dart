@@ -33,11 +33,9 @@ Future<void> showAboutApp(BuildContext context) async =>
                   onTap: () async => await autoUpdater.checkForUpdates(),
                 ),
               ],
-              applicationIcon: const SizedBox(
+              applicationIcon: SizedBox(
                 width: 100,
                 height: 100,
-                child: Image(
-                  image: AssetImage('assets/icon.png'),
-                ),
+                child: Image.asset('assets/icon.png'),
               ),
             ));

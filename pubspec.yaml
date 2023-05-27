@@ -3,8 +3,7 @@ description: Link Management System
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-# Using previous version to see if auto-update works on windows
-version: 1.0.1+9 #Online macOS 1.0.1+9 windows 1.0.1+9
+version: 1.1.0+10 #Online macOS 1.0.1 windows 1.0.1
 
 environment:
   sdk: ">=2.16.1 <3.0.0"
@@ -26,8 +25,6 @@ dependencies:
   cupertino_icons: ^1.0.5
   adaptive_dialog: ^1.8.3+1
   flutter_easyloading: ^3.0.5
-
-  #Utility
 
   #launch_at_startup: ^0.2.1
 
