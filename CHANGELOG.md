@@ -10,7 +10,18 @@ All notable changes to this project will be documented in this file.
 - Implemented system of auto update and release on windows
 - Added group of content
 
-[0.0.5]: https://github.com/kekko7072/lms/releases/tag/0.0.5
+[1.1.0]: https://github.com/kekko7072/lms/releases/tag/1.1.0
+
+## [1.1.0] - 2023-04-15
+### Added
+- Fixed issue on auto update on windows
+- Fixed issue on dialog icon
+
+## [1.0.1] - 2023-04-15
+### Added
+- Implemented system of auto update release on windows
+
+[0.0.5]: https://github.com/kekko7072/lms/releases/tag/1.0.1
 
 ## [0.0.5] - 2023-03-06
 ### Added
