@@ -25,9 +25,9 @@
                 https://github.com/kekko7072/lms/releases
             </sparkle:releaseNotesLink>
             <pubDate>Sun, 27 May 2023 12:00:00 +0800</pubDate>
-            <enclosure url="1.1.0+11/lms-1.1.0+11-windows-setup.exe"
-                sparkle:dsaSignature="MEQCIAbhcOdSOeXl/5EmagBGgUbXTyok/vUyqS2vBAK0orYcAiAzDjY8SvYiew7wefwVU2T1qxQdtHC5zs4f+ivJI1gUAQ=="
-                sparkle:version="1.1.0+11"
+            <enclosure url="1.1.1+12/lms-1.1.1+12-windows-setup.exe"
+                sparkle:dsaSignature="MEQCIHNCazxi0UNd9RJHqPI2H+DmA/IU0OL+GwwpW++sX/O5AiAoRjMAOGTy0e/aEO1DJpfnyVlH31oSfjEL9GkcfKxrtA=="
+                sparkle:version="1.1.1+12"
                 sparkle:os="windows"
                 length="0"
                 type="application/octet-stream" />
