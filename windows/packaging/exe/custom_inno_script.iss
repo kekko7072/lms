@@ -49,9 +49,9 @@ ArchitecturesInstallIn64BitMode=x64
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: {% if CREATE_DESKTOP_ICON != true %}unchecked{% else %}checkedonce{% endif %}
 Name: "launchAtStartup"; Description: "{cm:AutoStartProgram,{{DISPLAY_NAME}}}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: {% if LAUNCH_AT_STARTUP != true %}unchecked{% else %}checkedonce{% endif %}
 [Files]
-Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\{{EXECUTABLE_NAME}}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\flutter_windows.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\sqlite3.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\franc\Desktop\lms\windows\packaging\exe\sqlite3.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\dynamic_color_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\url_launcher_windows_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\franc\Desktop\lms\build\windows\runner\Release\auto_updater_plugin.dll"; DestDir: "{app}"; Flags: ignoreversion
