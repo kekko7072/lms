@@ -5,21 +5,22 @@
         <description>Most recent updates to LMS</description>
         <language>en</language>
         <item>
-            <title>Version 1.1.0</title>
+            <title>Version 1.1.1</title>
+            <link>https://sparkle-project.org</link>
             <sparkle:releaseNotesLink>
                 https://github.com/kekko7072/lms/releases
             </sparkle:releaseNotesLink>
             <pubDate>Sun, 27 May 2023 12:00:00 +0800</pubDate>
-        <sparkle:version>10</sparkle:version> <!--Use BUILD_VERSION-->
-        <sparkle:shortVersionString>1.1.0+10</sparkle:shortVersionString>
-        <enclosure url="1.1.0+10/lms-1.1.0+10-macos.zip"
-            sparkle:edSignature="KPaP42ICg58WgO5HHoWBP1keKsXOUPcIzNaxswE8kqc9OXdPdTDORkbK8jguu71al4XzZqnFYhT6ghSGPrEFDg=="
-            length="18726490"
+        <sparkle:version>12</sparkle:version> <!--Use BUILD_VERSION-->
+        <sparkle:shortVersionString>1.1.1+12</sparkle:shortVersionString>
+        <enclosure url="1.1.1+12/lms-1.1.1+12-macos.zip"  length="18071420"
+            sparkle:edSignature="StPalBMbVJT3HVfV/r2eJDGQZcAXtjiszXeovtgZFa55CRSl6TG2bhdJsxaujHFGSUq3pVE5W3GAuBMFtou0AQ=="
             sparkle:os="macos"
             type="application/octet-stream" />
         </item>
         <item>
             <title>Version 1.1.0</title>
+            <link>https://sparkle-project.org</link>
             <sparkle:releaseNotesLink>
                 https://github.com/kekko7072/lms/releases
             </sparkle:releaseNotesLink>
