@@ -4,23 +4,20 @@
         <title>LMS - Link Management System</title>
         <description>Most recent updates to LMS</description>
         <language>en</language>
-        <!--macOS-->
         <item>
             <title>Version 1.1.0</title>
-            <pubDate>Sun, 27 May 2023 12:00:00 +0800</pubDate>
             <sparkle:releaseNotesLink>
                 https://github.com/kekko7072/lms/releases
             </sparkle:releaseNotesLink>
+            <pubDate>Sun, 27 May 2023 12:00:00 +0800</pubDate>
         <sparkle:version>10</sparkle:version> <!--Use BUILD_VERSION-->
         <sparkle:shortVersionString>1.1.0+10</sparkle:shortVersionString>
         <enclosure url="1.1.0+10/lms-1.1.0+10-macos.zip"
-            sparkle:edSignature="EF6IT84Y8qAhCiFm1XGMFVflrff8QWpzcnEEkbqz4qPV0oRbeUXTUvslseILSCmxtDqQ0niQRGwfGQAhyIyyCg=="
-            length="18071421"
+            sparkle:edSignature="KPaP42ICg58WgO5HHoWBP1keKsXOUPcIzNaxswE8kqc9OXdPdTDORkbK8jguu71al4XzZqnFYhT6ghSGPrEFDg=="
+            length="18726490"
             sparkle:os="macos"
             type="application/octet-stream" />
-    </item>
-    <!--macOS-->
-        <!--windows-->
+        </item>
         <item>
             <title>Version 1.1.0</title>
             <sparkle:releaseNotesLink>
@@ -34,6 +31,5 @@
                 length="0"
                 type="application/octet-stream" />
         </item>
-        <!--windows-->
     </channel>
 </rss>
