@@ -11,8 +11,8 @@
             <sparkle:releaseNotesLink>
                 https://github.com/kekko7072/lms/releases
             </sparkle:releaseNotesLink>
-        <sparkle:version>9</sparkle:version> <!--Use BUILD_VERSION-->
-        <sparkle:shortVersionString>1.0.1+9</sparkle:shortVersionString>
+        <sparkle:version>10</sparkle:version> <!--Use BUILD_VERSION-->
+        <sparkle:shortVersionString>1.1.0+10</sparkle:shortVersionString>
         <enclosure url="1.1.0+10/lms-1.1.0+10-macos.zip"
             sparkle:edSignature="EF6IT84Y8qAhCiFm1XGMFVflrff8QWpzcnEEkbqz4qPV0oRbeUXTUvslseILSCmxtDqQ0niQRGwfGQAhyIyyCg=="
             length="18071421"
